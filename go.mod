@@ -1,9 +1,9 @@
 module github.com/pangum/cdn
 
-go 1.21
+go 1.23
 
 require (
-	github.com/goexl/cdn v0.0.8
+	github.com/goexl/cdn v0.0.9
 	github.com/pangum/pangu v0.4.4
 )
 
@@ -20,7 +20,7 @@ require (
 	github.com/goexl/env v0.0.2 // indirect
 	github.com/goexl/exc v0.0.5 // indirect
 	github.com/goexl/gfx v0.1.7 // indirect
-	github.com/goexl/gox v0.3.8 // indirect
+	github.com/goexl/gox v1.8.9 // indirect
 	github.com/goexl/log v0.0.5 // indirect
 	github.com/goexl/mengpo v0.2.4 // indirect
 	github.com/goexl/xiren v0.0.5 // indirect
@@ -30,7 +30,7 @@ require (
 	github.com/olekukonko/tablewriter v0.0.5 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
-	github.com/rs/xid v1.5.0 // indirect
+	github.com/rs/xid v1.6.0 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/storezhang/dig v0.0.1 // indirect
 	github.com/urfave/cli/v2 v2.25.7 // indirect
