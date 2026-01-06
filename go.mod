@@ -3,7 +3,7 @@ module github.com/harluo/cdn
 go 1.25
 
 require (
-	github.com/goexl/cdn v0.1.0
+	github.com/goexl/cdn v0.1.1
 	github.com/harluo/config v0.0.8
 	github.com/harluo/di v0.0.5
 )

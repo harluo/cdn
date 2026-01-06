@@ -17,8 +17,14 @@ func newClient(config *config.Config) (client *Client, err error) {
 			domain.Patterns = append(domain.Patterns, domain.Pattern)
 		}
 		_domain := builder.Domain().Host(domain.Host).Scheme(domain.Scheme).Pattern(domain.Patterns...)
-		if nil != domain.Chuangcache {
-			_domain = _domain.Chuangcache().C(domain.Chuangcache.C).Build()
+		if nil != domain.Ks {
+			signer := _domain.Ks()
+			if "" != domain.Ks.A {
+				signer.A(domain.Ks.A)
+			} else if "" != domain.Ks.B {
+				signer.B(domain.Ks.B)
+			}
+			_domain = signer.Build()
 		} else if nil != domain.Tencent {
 			signer := _domain.Tencent()
 			if "" != domain.Tencent.A {

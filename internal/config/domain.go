@@ -9,8 +9,8 @@ type Domain struct {
 	Pattern string `json:"pattern"`
 	// 匹配列表
 	Patterns []string `json:"patterns"`
-	// 创世云
-	Chuangcache *Chuangcache `json:"chuangcache" validate:"required_without_all=Tencent"`
+	// 金山云
+	Ks *Ks `json:"ks" validate:"required_without_all=Tencent"`
 	// 腾讯云
-	Tencent *Tencent `json:"tencent" validate:"required_without_all=Chuangcache"`
+	Tencent *Tencent `json:"tencent" validate:"required_without_all=Ks"`
 }
