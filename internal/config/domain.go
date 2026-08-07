@@ -7,6 +7,10 @@ type Domain struct {
 	Scheme string `default:"https" json:"scheme" validate:"oneof=http https"`
 	// 忽略列表
 	Ignores []string `json:"ignores,omitempty"`
+	// 匹配
+	Pattern string `json:"pattern,omitempty"`
+	// 匹配列表
+	Patterns []string `json:"patterns,omitempty"`
 	// 金山云
 	Ks *Ks `json:"ks" validate:"required_without_all=Tencent"`
 	// 腾讯云

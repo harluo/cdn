@@ -13,7 +13,10 @@ func newClient(config *config.Config) (client *Client, err error) {
 		config.Domains = append(config.Domains, config.Domain)
 	}
 	for _, cd := range config.Domains {
-		domain := builder.Domain().Host(cd.Host).Scheme(cd.Scheme).Ignore(cd.Ignores...)
+		if "" != cd.Pattern {
+			cd.Patterns = append(cd.Patterns, cd.Pattern)
+		}
+		domain := builder.Domain().Host(cd.Host).Scheme(cd.Scheme).Pattern(cd.Patterns...).Ignore(cd.Ignores...)
 		if nil != cd.Ks {
 			signer := domain.Ks()
 			if "" != cd.Ks.A {
