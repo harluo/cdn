@@ -5,10 +5,8 @@ type Domain struct {
 	Host string `json:"host" validate:"required,hostname|hostname_port"`
 	// 模式
 	Scheme string `default:"https" json:"scheme" validate:"oneof=http https"`
-	// 匹配
-	Pattern string `json:"pattern"`
-	// 匹配列表
-	Patterns []string `json:"patterns"`
+	// 忽略列表
+	Ignores []string `json:"ignores,omitempty"`
 	// 金山云
 	Ks *Ks `json:"ks" validate:"required_without_all=Tencent"`
 	// 腾讯云

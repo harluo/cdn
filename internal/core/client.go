@@ -12,33 +12,30 @@ func newClient(config *config.Config) (client *Client, err error) {
 	if nil != config.Domain {
 		config.Domains = append(config.Domains, config.Domain)
 	}
-	for _, domain := range config.Domains {
-		if "" != domain.Pattern {
-			domain.Patterns = append(domain.Patterns, domain.Pattern)
-		}
-		_domain := builder.Domain().Host(domain.Host).Scheme(domain.Scheme).Pattern(domain.Patterns...)
-		if nil != domain.Ks {
-			signer := _domain.Ks()
-			if "" != domain.Ks.A {
-				signer.A(domain.Ks.A)
-			} else if "" != domain.Ks.B {
-				signer.B(domain.Ks.B)
+	for _, cd := range config.Domains {
+		domain := builder.Domain().Host(cd.Host).Scheme(cd.Scheme).Ignore(cd.Ignores...)
+		if nil != cd.Ks {
+			signer := domain.Ks()
+			if "" != cd.Ks.A {
+				signer.A(cd.Ks.A)
+			} else if "" != cd.Ks.B {
+				signer.B(cd.Ks.B)
 			}
-			_domain = signer.Build()
-		} else if nil != domain.Tencent {
-			signer := _domain.Tencent()
-			if "" != domain.Tencent.A {
-				signer.A(domain.Tencent.A)
-			} else if "" != domain.Tencent.B {
-				signer.B(domain.Tencent.B)
-			} else if "" != domain.Tencent.C {
-				signer.C(domain.Tencent.C)
-			} else if nil != domain.Tencent.D {
-				signer.D(domain.Tencent.D.Key, domain.Tencent.D.Signature, domain.Tencent.D.Timestamp)
+			domain = signer.Build()
+		} else if nil != cd.Tencent {
+			signer := domain.Tencent()
+			if "" != cd.Tencent.A {
+				signer.A(cd.Tencent.A)
+			} else if "" != cd.Tencent.B {
+				signer.B(cd.Tencent.B)
+			} else if "" != cd.Tencent.C {
+				signer.C(cd.Tencent.C)
+			} else if nil != cd.Tencent.D {
+				signer.D(cd.Tencent.D.Key, cd.Tencent.D.Signature, cd.Tencent.D.Timestamp)
 			}
-			_domain = signer.Build()
+			domain = signer.Build()
 		}
-		builder = _domain.Build()
+		builder = domain.Build()
 	}
 	client = builder.Build()
 
